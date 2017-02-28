@@ -24,14 +24,14 @@
 
 import UIKit
 
-    class TapOverlayView: UIView {
-        var centroid:CGRect = CGRect.zero
+class TapOverlayView: UIView {
+    var centroid:CGRect = CGRect.zero
 
-        override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-            centroid = CGRect(origin: point, size: CGSize(width: 1, height: 1))
-            return nil // tap through
-        }
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        centroid = CGRect(origin: point, size: CGSize(width: 1, height: 1))
+        return nil // tap through
     }
+}
 
 class ViewController: UIViewController {
 
@@ -48,25 +48,25 @@ class ViewController: UIViewController {
     }
 }
 
-    extension ViewController: UIWebViewDelegate {
-        public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-            let rqstUrl = request.url
+extension ViewController: UIWebViewDelegate {
+    public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        let rqstUrl = request.url
 
-            if( rqstUrl!.scheme?.contains("http"))! && ( .linkClicked == navigationType) {
-                webView.stopLoading()
+        if( rqstUrl!.scheme?.contains("http"))! && ( .linkClicked == navigationType) {
+            webView.stopLoading()
 
-                let contentViewController = storyboard!.instantiateViewController(withIdentifier: "popover")
-                let popController = UIPopoverController(contentViewController: contentViewController)
-                contentViewController.modalPresentationStyle = .popover
-                popController.contentSize = CGSize(width: 200, height: 40)
-                let direction:UIPopoverArrowDirection = .down
-                popController.layoutMargins = UIEdgeInsetsMake(0, tap.centroid.origin.x, 1, 1)
-                popController.present(from: tap.centroid,
-                                      in: webView,
-                                      permittedArrowDirections: direction,
-                                      animated: true)
-            }
-            return true
+            let contentViewController = storyboard!.instantiateViewController(withIdentifier: "popover")
+            let popController = UIPopoverController(contentViewController: contentViewController)
+            contentViewController.modalPresentationStyle = .popover
+            popController.contentSize = CGSize(width: 200, height: 40)
+            let direction:UIPopoverArrowDirection = .down
+            popController.layoutMargins = UIEdgeInsetsMake(0, tap.centroid.origin.x, 1, 1)
+            popController.present(from: tap.centroid,
+                                  in: webView,
+                                  permittedArrowDirections: direction,
+                                  animated: true)
         }
+        return true
     }
+}
 
