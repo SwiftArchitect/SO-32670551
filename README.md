@@ -1,12 +1,12 @@
 # Get the coordinates of Hyperlink in UIWebview
 
-
+![preview](https://i.stack.imgur.com/mZj0w.png)
 
 ---
 
 ### Stack Overflow Question 32670551
 
-Xcode project & source code related to [UITapGestureRecognizer + UIPopoverController](http://stackoverflow.com/a/32677781/218152) anwser.
+Xcode project & source code related to [UITapGestureRecognizer + UIPopoverController](https://stackoverflow.com/questions/32670551/how-to-get-the-coordinates-of-hyperlink-in-uiwebview/32677781#32677781) answer.
 
 ---
 
@@ -17,6 +17,6 @@ Xcode project & source code related to [UITapGestureRecognizer + UIPopoverContro
 
 **References:**
 
-- [SO-32670551](http://stackoverflow.com/questions/32670551/how-to-get-the-coordinates-of-hyperlink-in-uiwebview) on Stack Overflow
+- Question [32670551](https://stackoverflow.com/questions/32670551) on Stack Overflow
 - This and other answers posted on [Swift Recipes](http://swiftarchitect.com/recipes/)
 
