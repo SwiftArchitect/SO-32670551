@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  SO-32670551
 //
-//  Copyright © 2017 Xavier Schott
+//  Copyright © 2017, 2018 Xavier Schott
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -56,15 +56,15 @@ extension ViewController: UIWebViewDelegate {
             webView.stopLoading()
 
             let contentViewController = storyboard!.instantiateViewController(withIdentifier: "popover")
-            let popController = UIPopoverController(contentViewController: contentViewController)
             contentViewController.modalPresentationStyle = .popover
-            popController.contentSize = CGSize(width: 200, height: 40)
-            let direction:UIPopoverArrowDirection = .down
-            popController.layoutMargins = UIEdgeInsetsMake(0, tap.centroid.origin.x, 1, 1)
-            popController.present(from: tap.centroid,
-                                  in: webView,
-                                  permittedArrowDirections: direction,
-                                  animated: true)
+            contentViewController.preferredContentSize = CGSize(width: 200, height: 40)
+
+            if let popController = contentViewController.popoverPresentationController {
+                popController.permittedArrowDirections = .down
+                popController.sourceView = webView
+                popController.sourceRect = CGRect(origin: tap.centroid.origin, size: CGSize.zero)
+                present(contentViewController, animated: true, completion: nil)
+            }
         }
         return true
     }
